@@ -21,4 +21,11 @@ This understanding of the mission will help answer these key questions in the en
   2 - What are the characteristics of pastoral households in the RNU? Do these characteristics meet the indicators of pastoral vulnerability?
   
       - Comparison of socio-demographics variables between RNU and non-RNU pastoralists.
-      - 
+      - Comparison of vulnerability score between RNU and non-RNU pastoralists.
+      - Critical analysis of the variables of the single sheet and reasonable proposal of adaptation for a future iteration of the RNU.
+      
+  3 - What are the potential biases that may lead to lack of consideration of pastoral households in the process?
+  
+      - Process evaluation (community identification, socio-economic survey.
+
+## Expected deliverables
