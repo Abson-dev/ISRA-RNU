@@ -29,3 +29,9 @@ This understanding of the mission will help answer these key questions in the en
       - Process evaluation (community identification, socio-economic survey.
 
 ## Expected deliverables
+
+Beyond the exchanges that will be organized with the main technical and financial partners of the implementation of RNU, the animation, the elaboration of tools and approaches, as well as the animation of field activities, the products expected at the end of this expertise, must correspond to the five following deliverables :
+
+*Deleverable 1*: An inception report presenting the mapping of RNU households and the sampling and data collection protocol;
+
+
