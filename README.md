@@ -1,5 +1,5 @@
 # ISRA-RNU
- <img src="docs/image.PNG" />
+ <img src="info.PNG" />
  ## Aim of the study
  
  The aim of the study is to analyse the current process of building the RNU in Senegal and to measure its effective degree of inclusiveness in relation to vulnerable pastoral populations.
@@ -46,4 +46,5 @@ Beyond the exchanges that will be organized with the main technical and financia
 
 ## Study area
 
+<img src="ze.PNG" />
 
