@@ -32,6 +32,18 @@ This understanding of the mission will help answer these key questions in the en
 
 Beyond the exchanges that will be organized with the main technical and financial partners of the implementation of RNU, the animation, the elaboration of tools and approaches, as well as the animation of field activities, the products expected at the end of this expertise, must correspond to the five following deliverables :
 
-*Deleverable 1*: An inception report presenting the mapping of RNU households and the sampling and data collection protocol;
+*Deleverable 1: An inception report presenting the mapping of RNU households and the sampling and data collection protocol*;
+
+*Deliverable 2 Interview guides, for focus group and field interviews, household survey questionnaire and planning of field activities*;
+
+*Deliverable 3: The analysis report of the UNR process and its implementation*;
+
+*Deliverable 4: The analysis report on the degree of inclusion of vulnerable pastoral populations (already delivered to the technical committee)*;
+
+*Deliverable 5: A final report of the study, with operational recommendations, validated by the technical committee*.
+
+## Sampling method
+
+## Study area
 
 
