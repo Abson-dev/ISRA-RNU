@@ -49,3 +49,16 @@ Beyond the exchanges that will be organized with the main technical and financia
 
 <img src="ze.PNG" />
 
+## Survey frame
+
+In this study two sampling frames are used:
+  - The RNU database: in this database pastoral households will be drawn to make an initial analysis of their vulnerability profile;
+  - The ANSD database of pastoral areas: this is used to target true pastoral areas to calculate the proportion of vulnerable pastoral households.
+ 
+## Calculation of the sample size
+
+Sample size (in terms of number of pastoral households) is set according to the formula for estimating a proportion.
+The sample size formula for estimating a proportion is as follows:
+
+$e^{i \pi} = -1$
+
