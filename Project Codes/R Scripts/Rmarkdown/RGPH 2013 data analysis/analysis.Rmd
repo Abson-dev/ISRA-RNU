@@ -25,13 +25,15 @@ library(ggplot2)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 POP_RGPH_2013_ANSD_LING_RAR_DAGANA <- read_delim("C:/Users/DELLDRAMOMO/Desktop/ISRA-RNU/Project datasets/data/RGPH 2013 ANSD/POP(RGPH 2013 ANSD)_LING_RAR_DAGANA.csv", 
-    ";", escape_double = FALSE, trim_ws = TRUE)
+    ";", escape_double = FALSE, trim_ws = TRUE) %>% dplyr::distinct()
 
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 Population_Pastorale<-POP_RGPH_2013_ANSD_LING_RAR_DAGANA %>% 
   dplyr::filter(`3@COMMUNE` %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL"))
+
+write.csv2(Population_Pastorale,"Population_Pastorale.csv",row.names = F)
 ```
 
 
@@ -42,6 +44,7 @@ Population_Pastorale %>%
  ggplot() +
  aes(x = `1@REGION`, weight = `6@MENAGES`) +
  geom_bar(fill = "#08306b") +
+ # geom_label(data=Population_Pastorale,aes(x=`1@REGION`,y=`6@MENAGES`, label=paste0(round(`6@MENAGES`,0),"")),size=2)+
  labs(x = "Régions", y = "Nombre de ménages", title = "Nombre de ménage par Région", caption = "Source: ANSD,RGPH 2013") +
  ggthemes::theme_stata()
 
