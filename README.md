@@ -1,7 +1,7 @@
 # ISRA-RNU
 
 <p align="center">
-  <img width="460" height="300" src="info.PNG">
+  <img  src="info.PNG">
 </p>
  
  
