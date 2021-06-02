@@ -15,21 +15,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE}
 library(readr)
 library(dplyr)
 library(ggplot2)
 ```
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 
 POP_RGPH_2013_ANSD_LING_RAR_DAGANA <- read_delim("C:/Users/DELLDRAMOMO/Desktop/ISRA-RNU/Project datasets/data/RGPH 2013 ANSD/POP(RGPH 2013 ANSD)_LING_RAR_DAGANA.csv", 
     ";", escape_double = FALSE, trim_ws = TRUE) %>% dplyr::distinct()
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE}
 Population_Pastorale<-POP_RGPH_2013_ANSD_LING_RAR_DAGANA %>% 
   dplyr::filter(`3@COMMUNE` %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL"))
 
@@ -37,7 +37,7 @@ write.csv2(Population_Pastorale,"Population_Pastorale.csv",row.names = F)
 ```
 
 
-```{r region, echo=FALSE, message=FALSE, warning=FALSE}
+```{r region,  message=FALSE, warning=FALSE}
 
 Population_Pastorale %>%
  filter(!(`11@OBSERVATIONS` %in% "Non habit<e9>")) %>%
@@ -50,7 +50,7 @@ Population_Pastorale %>%
 
 ```
 
-```{r departement, echo=FALSE, message=FALSE, warning=FALSE}
+```{r departement,  message=FALSE, warning=FALSE}
 #esquisser(Population_Pastorale)
 
 
@@ -65,7 +65,7 @@ Population_Pastorale %>%
 ```
 
 
-```{r commune, echo=FALSE, message=FALSE, warning=FALSE}
+```{r commune,  message=FALSE, warning=FALSE}
 
 
 # library(esquisse)
