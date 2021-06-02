@@ -1,5 +1,9 @@
 # ISRA-RNU
- <img src="info.PNG" />
+
+<p align="center">
+  <img  src="info.PNG">
+</p>
+ 
  
  ## Aim of the study
  
