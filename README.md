@@ -62,6 +62,6 @@ The sample size formula for estimating a proportion is as follows:
 
   ![n](https://latex.codecogs.com/gif.latex?n%20%3D%20%5Cfrac%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%7D%7Be%5E2%7D)
 
-Using a correction factor of   relating to small populations, we get:
+Using a correction factor of ![f](https://latex.codecogs.com/gif.latex?%5Csqrt%7B%5Cfrac%7BN-n%7D%7BN-1%7D%7D)  relating to small populations, we get:
 
 
