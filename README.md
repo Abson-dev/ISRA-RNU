@@ -60,5 +60,20 @@ In this study two sampling frames are used:
 Sample size (in terms of number of pastoral households) is set according to the formula for estimating a proportion.
 The sample size formula for estimating a proportion is as follows:
 
+  ![n](https://latex.codecogs.com/gif.latex?n%20%3D%20%5Cfrac%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%7D%7Be%5E2%7D)
 
+Using a correction factor of ![f](https://latex.codecogs.com/gif.latex?%5Csqrt%7B%5Cfrac%7BN-n%7D%7BN-1%7D%7D)  relating to small populations, we get:
+
+![nf](https://latex.codecogs.com/gif.latex?%5Cfrac%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%7D%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%20&plus;%20%28N-1%29%20*%20e%5E2%7D)
+
+where :
+
+ - **N** is the total number of pastoral households, equal to **6999** (the number of pastoral households in the communes of Velingara in Ranérou, Tesseekré and Thieul in Linguère and Mbane in Dagana, **RGPH 2013, ANSD**);
+ - **p** is the proportion of vulnerable pastoral households. To ensure that the sample is representative, we set **p=0.5** ;
+ - **e** is the margin of error or accuracy level set at **5%**;
+ - ![z](https://latex.codecogs.com/gif.latex?Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D)is equal to **2.326** for α fixed with a threshold of **98%** (two-tailed test);
+
+By filling in the different values we obtain :
+
+![](https://latex.codecogs.com/gif.latex?n%20%3D%20%5Cfrac%7B2.326%5E2%20*%200.5%20*%20%281-0.5%29%20*%206999%7D%7B2.326%5E2%20*%200.5%20*%20%281-0.5%29%20&plus;%20%286999%20-%201%29%20*%200.05%5E2%7D%20%3D%20502) pastoral households to be surveyed, which represents **7.18%** of the number of pastoral households in the four communes.
 
