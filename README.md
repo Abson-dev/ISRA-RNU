@@ -60,7 +60,7 @@ In this study two sampling frames are used:
 Sample size (in terms of number of pastoral households) is set according to the formula for estimating a proportion.
 The sample size formula for estimating a proportion is as follows:
 
-![n](https://latex.codecogs.com/gif.latex?n%20%3D%20%5Cfrac%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%7D%7Be%5E2%7D)
+                   ![n](https://latex.codecogs.com/gif.latex?n%20%3D%20%5Cfrac%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%7D%7Be%5E2%7D)
 
 
 
