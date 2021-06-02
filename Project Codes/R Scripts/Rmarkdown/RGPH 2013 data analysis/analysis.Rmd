@@ -18,6 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(readr)
 library(dplyr)
+library(ggplot2)
 ```
 
 
@@ -28,17 +29,48 @@ POP_RGPH_2013_ANSD_LING_RAR_DAGANA <- read_delim("C:/Users/DELLDRAMOMO/Desktop/I
 
 ```
 
-
-```{r commune, echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 Population_Pastorale<-POP_RGPH_2013_ANSD_LING_RAR_DAGANA %>% 
   dplyr::filter(`3@COMMUNE` %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL"))
+```
+
+
+```{r region, echo=FALSE, message=FALSE, warning=FALSE}
+
+Population_Pastorale %>%
+ filter(!(`11@OBSERVATIONS` %in% "Non habit<e9>")) %>%
+ ggplot() +
+ aes(x = `1@REGION`, weight = `6@MENAGES`) +
+ geom_bar(fill = "#08306b") +
+ labs(x = "Régions", y = "Nombre de ménages", title = "Nombre de ménage par Région", caption = "Source: ANSD,RGPH 2013") +
+ ggthemes::theme_stata()
+
+```
+
+```{r departement, echo=FALSE, message=FALSE, warning=FALSE}
+#esquisser(Population_Pastorale)
+
+
+
+Population_Pastorale %>%
+ filter(!(`11@OBSERVATIONS` %in% "Non habit<e9>")) %>%
+ ggplot() +
+ aes(x = `2@DEPARTEMENT`, weight = `6@MENAGES`) +
+ geom_bar(fill = "#35b779") +
+ labs(x = "Départements", y = "Nombre de ménages", title = "Nombre de ménages par départements", caption = "Source: ANSD, RGPH 2013") +
+ ggthemes::theme_economist()
+```
+
+
+```{r commune, echo=FALSE, message=FALSE, warning=FALSE}
+
 
 # library(esquisse)
 # 
 # esquisser(Population_Pastorale)
 
-library(dplyr)
-library(ggplot2)
+
+
 
 Population_Pastorale %>%
  filter(!(`11@OBSERVATIONS` %in% "Non habit<e9>")) %>%
@@ -48,3 +80,4 @@ Population_Pastorale %>%
  labs(x = "Communes", y = "Nombre de ménages (RGPH 2013)", title = "Nombre de ménage par communes", caption = "Source :ANSD, RGPH 2013") +
  ggthemes::theme_stata()
 ```
+
