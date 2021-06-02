@@ -66,4 +66,10 @@ Using a correction factor of ![f](https://latex.codecogs.com/gif.latex?%5Csqrt%7
 
 ![nf](https://latex.codecogs.com/gif.latex?%5Cfrac%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%7D%7B%28Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D%29%5E2%20*%20p%20*%20%281-p%29%20&plus;%20%28N-1%29%20*%20e%5E2%7D)
 
+where :
+
+ - **N** is the total number of pastoral households, equal to 6999 (the number of pastoral households in the communes of Velingara in Ranérou, Tesseekré and Thieul in Linguère and Mbane in Dagana, RGPH 2013, ANSD);
+ - **p** is the proportion of vulnerable pastoral households. To ensure that the sample is representative, we set **p=0.5** ;
+ - **e** is the margin of error or accuracy level set at **5%**;
+ - ![z](https://latex.codecogs.com/gif.latex?Z_%7B%5Cfrac%7B%5Calpha%7D%7B2%7D%7D)is equal to 2.326 for α fixed with a threshold of 98% (two-tailed test);
 
