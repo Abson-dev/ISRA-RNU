@@ -96,15 +96,23 @@ Population_Pastorale %>%
 | LOUGA   | LINGUERE     | TESSEKRE FORAGE    | 1177    |
 
 
-```{r}
+```{r eval=FALSE}
 Population_Pastorale %>% 
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
   dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% dplyr::mutate(Village=sum(Village,na.rm = T))  %>% 
-  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village)%>% dplyr::distinct()
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village) %>% dplyr::distinct()
   
   
   
 ```
+
+| REGION | DEPARTEMENT | COMMUNE | VILLAGES  |
+| :---         |     :---:      |          :---: |  ---: |
+| MATAM   | RANEROU     | VELINGARA    | 81    |
+| LOUGA   | LINGUERE     | TESSEKRE FORAGE    | 74    |
+| LOUGA   | LINGUERE     | THIEL    | 65    |
+| SAINT-LOUIS   | DAGANA     | MBANE    | 47    |
+
 
