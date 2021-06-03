@@ -67,14 +67,6 @@ Population_Pastorale %>%
 
 ```{r commune,  message=FALSE, warning=FALSE}
 
-
-# library(esquisse)
-# 
-# esquisser(Population_Pastorale)
-
-
-
-
 Population_Pastorale %>%
  filter(!(`11@OBSERVATIONS` %in% "Non habit<e9>")) %>%
  ggplot() +
