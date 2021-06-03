@@ -76,3 +76,14 @@ Population_Pastorale %>%
  ggthemes::theme_stata()
 ```
 
+
+```{r}
+Population_Pastorale %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
+  dplyr::mutate(Total=sum(`6@MENAGES`,na.rm = T)) %>% 
+  select(`3@COMMUNE`,Total) %>% distinct()
+
+
+```
+
