@@ -60,6 +60,14 @@ Population_Pastorale %>%
 
 ![](analysis_files/figure-markdown_github/commune-1.png)
 
+``` r
+Population_Pastorale %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
+  dplyr::mutate(Total=sum(`6@MENAGES`,na.rm = T)) %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Total) %>% distinct()
+```
+
 | REGION      | DEPARTEMENT |     COMMUNE     | MENAGES |
 |:------------|:-----------:|:---------------:|--------:|
 | SAINT-LOUIS |   DAGANA    |      MBANE      |    2543 |
