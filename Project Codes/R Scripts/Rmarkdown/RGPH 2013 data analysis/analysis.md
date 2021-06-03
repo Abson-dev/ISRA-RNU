@@ -94,7 +94,7 @@ s = pd.Series(data=[1177,1315,1964,2543],
  index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
 ax = s.plot.pie(autopct='%.1f') 
 # followed by the standard plot output ... 
-ax.set_title('Proportion de ménage par commune') 
+ax.set_title('Proportion de ménages par commune') 
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 fig = ax.figure 
@@ -107,7 +107,7 @@ plt.show()
 <img src="analysis_files/figure-markdown_github/pie-1.png" width="768" />
 
 ``` r
-Population_Pastorale %>% 
+df<-Population_Pastorale %>% 
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
   dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
@@ -121,3 +121,20 @@ Population_Pastorale %>%
 | LOUGA       |  LINGUERE   | TESSEKRE FORAGE |       74 |
 | LOUGA       |  LINGUERE   |      THIEL      |       65 |
 | SAINT-LOUIS |   DAGANA    |      MBANE      |       47 |
+
+``` python
+s = pd.Series(data=[74,65,81,47], 
+ index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
+ax = s.plot.pie(autopct='%.1f') 
+# followed by the standard plot output ... 
+ax.set_title('Proportion de villages par commune') 
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+fig = ax.figure 
+fig.set_size_inches(8, 8) 
+#fig.savefig('filename.png', dpi=125) 
+#plt.close(fig)
+plt.show()
+```
+
+<img src="analysis_files/figure-markdown_github/pievillage-1.png" width="768" />
