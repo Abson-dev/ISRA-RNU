@@ -65,10 +65,8 @@ Population_Pastorale %>%
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
   dplyr::mutate(Total=sum(`6@MENAGES`,na.rm = T)) %>% 
-  select(`3@COMMUNE`,Total) %>% distinct()
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Total) %>% distinct()
 ```
-
-    ## Adding missing grouping variables: `1@REGION`, `2@DEPARTEMENT`
 
     ## # A tibble: 4 x 4
     ## # Groups:   1@REGION, 2@DEPARTEMENT, 3@COMMUNE [4]
@@ -78,3 +76,19 @@ Population_Pastorale %>%
     ## 2 LOUGA       LINGUERE        TESSEKRE FORAGE  1177
     ## 3 LOUGA       LINGUERE        THIEL            1315
     ## 4 MATAM       RANEROU         VELINGARA        1964
+
+| REGION      |       DEPARTEMENT       |    COMMUNE     |        MENAGES |
+|:------------|:-----------------------:|:--------------:|---------------:|
+| SAINT-LOUIS |         DAGANA          |     MBANE      |           2543 |
+| BIO1        | Annual Mean Temperature | Degrees celsus | Degrees celsus |
+| BIO1        | Annual Mean Temperature | Degrees celsus | Degrees celsus |
+| BIO1        | Annual Mean Temperature | Degrees celsus | Degrees celsus |
+
+``` r
+df<-Population_Pastorale %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`)%>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
+  dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% dplyr::mutate(Village=sum(Village,na.rm = T))  %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village)%>% dplyr::distinct()
+```
