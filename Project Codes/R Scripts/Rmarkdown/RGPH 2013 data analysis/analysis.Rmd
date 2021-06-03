@@ -91,9 +91,9 @@ Population_Pastorale %>%
 | REGION | DEPARTEMENT | COMMUNE | MENAGES  |
 | :---         |     :---:      |          :---: |  ---: |
 | SAINT-LOUIS   | DAGANA     | MBANE    | 2543    |
-| BIO1   | Annual Mean Temperature     | Degrees celsus    | Degrees celsus    |
-| BIO1   | Annual Mean Temperature     | Degrees celsus    | Degrees celsus    |
-| BIO1   | Annual Mean Temperature     | Degrees celsus    | Degrees celsus    |
+| MATAM   | RANEROU     | VELINGARA    | 1964    |
+| LOUGA   | LINGUERE     | THIEL    | 1315    |
+| LOUGA   | LINGUERE     | TESSEKRE FORAGE    | 1177    |
 
 
 ```{r}
