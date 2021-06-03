@@ -77,12 +77,12 @@ Population_Pastorale %>%
     ## 3 LOUGA       LINGUERE        THIEL            1315
     ## 4 MATAM       RANEROU         VELINGARA        1964
 
-| REGION      |       DEPARTEMENT       |    COMMUNE     |        MENAGES |
-|:------------|:-----------------------:|:--------------:|---------------:|
-| SAINT-LOUIS |         DAGANA          |     MBANE      |           2543 |
-| BIO1        | Annual Mean Temperature | Degrees celsus | Degrees celsus |
-| BIO1        | Annual Mean Temperature | Degrees celsus | Degrees celsus |
-| BIO1        | Annual Mean Temperature | Degrees celsus | Degrees celsus |
+| REGION      | DEPARTEMENT |     COMMUNE     | MENAGES |
+|:------------|:-----------:|:---------------:|--------:|
+| SAINT-LOUIS |   DAGANA    |      MBANE      |    2543 |
+| MATAM       |   RANEROU   |    VELINGARA    |    1964 |
+| LOUGA       |  LINGUERE   |      THIEL      |    1315 |
+| LOUGA       |  LINGUERE   | TESSEKRE FORAGE |    1177 |
 
 ``` r
 df<-Population_Pastorale %>% 
