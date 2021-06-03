@@ -82,8 +82,29 @@ Population_Pastorale %>%
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
   dplyr::mutate(Total=sum(`6@MENAGES`,na.rm = T)) %>% 
-  select(`3@COMMUNE`,Total) %>% distinct()
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Total) %>% distinct()
+  
 
 
+```
+
+| REGION | DEPARTEMENT | COMMUNE | MENAGES  |
+| :---         |     :---:      |          :---: |  ---: |
+| SAINT-LOUIS   | DAGANA     | MBANE    | 2543    |
+| BIO1   | Annual Mean Temperature     | Degrees celsus    | Degrees celsus    |
+| BIO1   | Annual Mean Temperature     | Degrees celsus    | Degrees celsus    |
+| BIO1   | Annual Mean Temperature     | Degrees celsus    | Degrees celsus    |
+
+
+```{r}
+df<-Population_Pastorale %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`)%>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
+  dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% dplyr::mutate(Village=sum(Village,na.rm = T))  %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village)%>% dplyr::distinct()
+  
+  
+  
 ```
 
