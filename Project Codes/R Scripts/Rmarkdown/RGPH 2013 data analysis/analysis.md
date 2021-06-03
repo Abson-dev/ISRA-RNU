@@ -60,23 +60,6 @@ Population_Pastorale %>%
 
 ![](analysis_files/figure-markdown_github/commune-1.png)
 
-``` r
-Population_Pastorale %>% 
-  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
-  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
-  dplyr::mutate(Total=sum(`6@MENAGES`,na.rm = T)) %>% 
-  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Total) %>% distinct()
-```
-
-    ## # A tibble: 4 x 4
-    ## # Groups:   1@REGION, 2@DEPARTEMENT, 3@COMMUNE [4]
-    ##   `1@REGION`  `2@DEPARTEMENT` `3@COMMUNE`     Total
-    ##   <chr>       <chr>           <chr>           <dbl>
-    ## 1 SAINT-LOUIS DAGANA          MBANE            2543
-    ## 2 LOUGA       LINGUERE        TESSEKRE FORAGE  1177
-    ## 3 LOUGA       LINGUERE        THIEL            1315
-    ## 4 MATAM       RANEROU         VELINGARA        1964
-
 | REGION      | DEPARTEMENT |     COMMUNE     | MENAGES |
 |:------------|:-----------:|:---------------:|--------:|
 | SAINT-LOUIS |   DAGANA    |      MBANE      |    2543 |
