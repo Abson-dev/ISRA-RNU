@@ -97,7 +97,7 @@ Population_Pastorale %>%
 
 
 ```{r}
-df<-Population_Pastorale %>% 
+Population_Pastorale %>% 
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
   dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
