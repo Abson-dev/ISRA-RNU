@@ -81,14 +81,12 @@ Population_Pastorale %>%
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
   dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% dplyr::mutate(Village=sum(Village,na.rm = T))  %>% 
-  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village)%>% dplyr::distinct()
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village) %>% dplyr::distinct()
 ```
 
-    ## # A tibble: 4 x 4
-    ## # Groups:   1@REGION, 2@DEPARTEMENT, 3@COMMUNE [4]
-    ##   `1@REGION`  `2@DEPARTEMENT` `3@COMMUNE`     Village
-    ##   <chr>       <chr>           <chr>             <int>
-    ## 1 SAINT-LOUIS DAGANA          MBANE                47
-    ## 2 LOUGA       LINGUERE        TESSEKRE FORAGE      74
-    ## 3 LOUGA       LINGUERE        THIEL                65
-    ## 4 MATAM       RANEROU         VELINGARA            81
+| REGION      | DEPARTEMENT |     COMMUNE     | VILLAGES |
+|:------------|:-----------:|:---------------:|---------:|
+| MATAM       |   RANEROU   |    VELINGARA    |       81 |
+| LOUGA       |  LINGUERE   | TESSEKRE FORAGE |       74 |
+| LOUGA       |  LINGUERE   |      THIEL      |       65 |
+| SAINT-LOUIS |   DAGANA    |      MBANE      |       47 |
