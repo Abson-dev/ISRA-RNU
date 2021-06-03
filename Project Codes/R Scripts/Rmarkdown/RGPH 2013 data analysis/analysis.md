@@ -98,13 +98,13 @@ ax.set_title('Proportion de ménage par commune')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 fig = ax.figure 
-fig.set_size_inches(10, 10) 
+fig.set_size_inches(8, 8) 
 #fig.savefig('filename.png', dpi=125) 
 #plt.close(fig)
 plt.show()
 ```
 
-<img src="analysis_files/figure-markdown_github/pie-1.png" width="960" />
+<img src="analysis_files/figure-markdown_github/pie-1.png" width="768" />
 
 ``` r
 Population_Pastorale %>% 
