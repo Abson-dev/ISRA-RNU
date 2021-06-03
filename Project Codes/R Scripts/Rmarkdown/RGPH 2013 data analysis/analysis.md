@@ -5,6 +5,14 @@ RGPH 2013 Analysis
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(reticulate) #for python
+```
+
+``` python
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+import seaborn as sns
 ```
 
 ``` r
@@ -61,11 +69,13 @@ Population_Pastorale %>%
 ![](analysis_files/figure-markdown_github/commune-1.png)
 
 ``` r
-Population_Pastorale %>% 
+menage<-Population_Pastorale %>% 
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
   dplyr::mutate(Total=sum(`6@MENAGES`,na.rm = T)) %>% 
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Total) %>% dplyr::arrange(Total) %>% dplyr:: distinct()
+
+names(menage)<-c("REGION","DEPARTEMENT","COMMUNE","MENAGES")
 ```
 
 | REGION      | DEPARTEMENT |     COMMUNE     | MENAGES |
@@ -74,6 +84,27 @@ Population_Pastorale %>%
 | MATAM       |   RANEROU   |    VELINGARA    |    1964 |
 | LOUGA       |  LINGUERE   |      THIEL      |    1315 |
 | LOUGA       |  LINGUERE   | TESSEKRE FORAGE |    1177 |
+
+``` python
+#data=r.menage
+# data["COMMUNE"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+# plt.show()
+
+s = pd.Series(data=[1177,1315,1964,2543], 
+ index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
+ax = s.plot.pie(autopct='%.1f') 
+# followed by the standard plot output ... 
+ax.set_title('Proportion de ménage par commune') 
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+fig = ax.figure 
+fig.set_size_inches(10, 10) 
+#fig.savefig('filename.png', dpi=125) 
+#plt.close(fig)
+plt.show()
+```
+
+<img src="analysis_files/figure-markdown_github/pie-1.png" width="960" />
 
 ``` r
 Population_Pastorale %>% 
