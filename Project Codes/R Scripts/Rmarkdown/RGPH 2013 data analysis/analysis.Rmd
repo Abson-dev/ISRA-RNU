@@ -77,7 +77,7 @@ Population_Pastorale %>%
 ```
 
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 Population_Pastorale %>% 
   dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`6@MENAGES`)%>% 
   dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% 
