@@ -76,7 +76,7 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(possession), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 50L)
 
 #esquisser(rs)
 ```
