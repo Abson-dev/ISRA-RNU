@@ -190,7 +190,7 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(m14_4), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 60L)
 ```
 
 
@@ -219,7 +219,7 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(m14_5), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 60L)
 ```
 
 
@@ -247,7 +247,7 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(m14_6), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 60L)
 ```
 
 
