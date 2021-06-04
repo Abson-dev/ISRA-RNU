@@ -67,7 +67,7 @@ df_sta<-df_sta %>%
 | LOUGA   | LINGUERE     | THIEL    | 95    |
 | LOUGA   | LINGUERE     | TESSEKRE FORAGE    | 85    |
 
-```{python pie}
+```{python echantillon}
 s = pd.Series(data=[85,95,141,181], 
  index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
 ax = s.plot.pie(autopct='%.1f') 
@@ -122,7 +122,7 @@ df<-Echantillon_Population_Pastorale %>%
 | LOUGA   | LINGUERE     | THIEL    | 52    |
 | SAINT-LOUIS   | DAGANA     | MBANE    | 43    |
 
-```{python villageechantillon}
+```{python village}
 s = pd.Series(data=[56,52,69,43], 
  index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
 ax = s.plot.pie(autopct='%.1f') 
@@ -137,7 +137,7 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
-```{r}
+```{r commune}
 
 
 ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
@@ -149,7 +149,7 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
 
 ```
 
-```{r}
+```{r departement}
   ggplot(data=df_sta %>% 
   dplyr::group_by(`2@DEPARTEMENT`) %>% 
   dplyr::mutate(MENAGES=sum(MENAGES)) %>% 
@@ -163,7 +163,7 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
 
 ```
 
-```{r}
+```{r region}
 ggplot(data=df_sta %>% 
   dplyr::group_by(`1@REGION`) %>% 
   dplyr::mutate(MENAGES=sum(MENAGES)) %>% 
