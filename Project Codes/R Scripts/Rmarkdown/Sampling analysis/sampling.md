@@ -38,6 +38,30 @@ df_sta<-df_sta %>%
                 MENAGES=round(prop*Echantillon/100,0))
 ```
 
+| REGION      | DEPARTEMENT |     COMMUNE     | MENAGES |
+|:------------|:-----------:|:---------------:|--------:|
+| SAINT-LOUIS |   DAGANA    |      MBANE      |     181 |
+| MATAM       |   RANEROU   |    VELINGARA    |     141 |
+| LOUGA       |  LINGUERE   |      THIEL      |      95 |
+| LOUGA       |  LINGUERE   | TESSEKRE FORAGE |      85 |
+
+``` python
+s = pd.Series(data=[85,95,141,181], 
+ index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
+ax = s.plot.pie(autopct='%.1f') 
+# followed by the standard plot output ... 
+ax.set_title('Proportion de ménages à tirer par commune') 
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+fig = ax.figure 
+fig.set_size_inches(8, 8) 
+#fig.savefig('filename.png', dpi=125) 
+#plt.close(fig)
+plt.show()
+```
+
+<img src="sampling_files/figure-markdown_github/pie-1.png" width="768" />
+
 ``` r
 Echantillon_Population_Pastorale<-Population_Pastorale %>% 
   dplyr::mutate(Proba=ifelse(`3@COMMUNE`=="MBANE",`6@MENAGES`/2543,
@@ -57,3 +81,36 @@ Echantillon_Population_Pastorale<-Echantillon_Population_Pastorale %>%
   dplyr::mutate(n=round(n,0)) %>% 
   dplyr::filter(n>0)
 ```
+
+``` r
+df<-Echantillon_Population_Pastorale %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`)%>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,`7@QUARTIERS-VILLAGES`) %>% 
+  dplyr::mutate(Village=n()) %>% dplyr::distinct() %>% 
+  dplyr::group_by(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`) %>% dplyr::mutate(Village=sum(Village,na.rm = T))  %>% 
+  dplyr::select(`1@REGION`,`2@DEPARTEMENT`,`3@COMMUNE`,Village) %>% dplyr::distinct()
+```
+
+| REGION      | DEPARTEMENT |     COMMUNE     | VILLAGES |
+|:------------|:-----------:|:---------------:|---------:|
+| MATAM       |   RANEROU   |    VELINGARA    |       69 |
+| LOUGA       |  LINGUERE   | TESSEKRE FORAGE |       56 |
+| LOUGA       |  LINGUERE   |      THIEL      |       52 |
+| SAINT-LOUIS |   DAGANA    |      MBANE      |       43 |
+
+``` python
+s = pd.Series(data=[56,52,69,43], 
+ index =  ['TESSEKRE FORAGE', 'THIEL', 'VELINGARA','MBANE']) 
+ax = s.plot.pie(autopct='%.1f') 
+# followed by the standard plot output ... 
+ax.set_title('Proportion de villages tirés par commune') 
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+fig = ax.figure 
+fig.set_size_inches(8, 8) 
+#fig.savefig('filename.png', dpi=125) 
+#plt.close(fig)
+plt.show()
+```
+
+<img src="sampling_files/figure-markdown_github/villageechantillon-1.png" width="768" />
