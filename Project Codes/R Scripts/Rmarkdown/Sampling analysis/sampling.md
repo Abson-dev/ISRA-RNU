@@ -60,7 +60,7 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
-<img src="sampling_files/figure-markdown_github/echantillon-1.png" width="100" />
+<img src="sampling_files/figure-markdown_github/echantillon-1.png" width="400" />
 
 ``` r
 Echantillon_Population_Pastorale<-Population_Pastorale %>% 
