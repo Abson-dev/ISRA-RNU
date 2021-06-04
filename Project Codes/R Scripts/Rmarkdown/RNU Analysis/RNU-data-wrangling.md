@@ -60,7 +60,7 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(possession), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 50L)
 ```
 
 ![](RNU-data-wrangling_files/figure-markdown_github/possession-1.png)
