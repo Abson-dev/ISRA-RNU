@@ -123,7 +123,8 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
   geom_text(aes(label=MENAGES), position=position_dodge(width=0.9), hjust=-0.25)+
  labs(x = "Commune", y = "Nombre de ménages", title = "Nombre de ménages à tirer par commune") +
  coord_flip() +
- ggthemes::theme_igray()
+ ggthemes::theme_igray()+
+ ylim(0L, 200L)
 ```
 
 ![](sampling_files/figure-markdown_github/commune-1.png)
