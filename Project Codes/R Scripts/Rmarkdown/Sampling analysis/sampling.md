@@ -60,7 +60,7 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
-<img src="sampling_files/figure-markdown_github/pie-1.png" width="768" />
+<img src="sampling_files/figure-markdown_github/echantillon-1.png" width="768" />
 
 ``` r
 Echantillon_Population_Pastorale<-Population_Pastorale %>% 
@@ -115,7 +115,7 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
-<img src="sampling_files/figure-markdown_github/villageechantillon-1.png" width="768" />
+<img src="sampling_files/figure-markdown_github/village-1.png" width="768" />
 
 ``` r
 ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
@@ -126,7 +126,7 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
  ggthemes::theme_igray()
 ```
 
-![](sampling_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](sampling_files/figure-markdown_github/commune-1.png)
 
 ``` r
   ggplot(data=df_sta %>% 
@@ -140,7 +140,7 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
  ggthemes::theme_par()
 ```
 
-![](sampling_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](sampling_files/figure-markdown_github/departement-1.png)
 
 ``` r
 ggplot(data=df_sta %>% 
@@ -155,4 +155,4 @@ ggplot(data=df_sta %>%
  ggthemes::theme_stata()
 ```
 
-![](sampling_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](sampling_files/figure-markdown_github/region-1.png)
