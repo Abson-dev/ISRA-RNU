@@ -188,12 +188,8 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(m14_4), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 60L)
 ```
-
-    ## Warning: Removed 1 rows containing missing values (geom_bar).
-
-    ## Warning: Removed 1 rows containing missing values (geom_text).
 
 ![](RNU-data-wrangling_files/figure-markdown_github/possessionvolailles-1.png)
 
@@ -223,12 +219,8 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(m14_5), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 60L)
 ```
-
-    ## Warning: Removed 1 rows containing missing values (geom_bar).
-
-    ## Warning: Removed 1 rows containing missing values (geom_text).
 
 ![](RNU-data-wrangling_files/figure-markdown_github/possessionporcins-1.png)
 
@@ -258,12 +250,8 @@ ggplot(data=df %>%
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(m14_6), scales = "fixed")+
- ylim(0L, 40L)
+ ylim(0L, 60L)
 ```
-
-    ## Warning: Removed 1 rows containing missing values (geom_bar).
-
-    ## Warning: Removed 1 rows containing missing values (geom_text).
 
 ![](RNU-data-wrangling_files/figure-markdown_github/possessionchevaux-1.png)
 
