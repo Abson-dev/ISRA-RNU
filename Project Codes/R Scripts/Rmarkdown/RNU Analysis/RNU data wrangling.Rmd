@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r message=FALSE, warning=FALSE}
 library(readxl)
 library(dplyr)
+library(ggplot2)
 library(reticulate) #for python
 ```
 
@@ -62,12 +63,21 @@ df <- df %>%
 
 ```
 
-```{r}
-df %>% 
+```{r possession}
+ggplot(data=df %>% 
   dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,possession) %>% 
   dplyr::mutate(n=n()) %>% 
   dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,n) %>%
-  dplyr::distinct()  
+  dplyr::distinct(),aes(x = nom_commune_men, y = n)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=n), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Effectif", title = "Possession (Oui / Non) des animaux dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(possession), scales = "fixed")+
+ ylim(0L, 1000L)
+
+#esquisser(rs)
 ```
 
 
