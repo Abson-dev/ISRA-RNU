@@ -133,7 +133,10 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
  ylim(0L, 200L)
 ```
 
-![](sampling_files/figure-markdown_github/commune-1.png)
+<p align="center">
+  <img src="sampling_files/figure-markdown_github/commune-1.png" width="500" />
+</p>
+
 
 ``` r
   ggplot(data=df_sta %>% 
