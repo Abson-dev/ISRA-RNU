@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # RNU data wrangling
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(readxl)
 library(dplyr)
 library(reticulate) #for python
@@ -28,7 +28,7 @@ import pandas as pd
 import seaborn as sns
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 RNU_DAGANA_LINGUERE <- read_excel("C:/Users/DELLDRAMOMO/Desktop/ISRA-RNU/Project datasets/data/RNU datasets/Donnee_etude_inclusion_populations_pastorales_dept_DAGANA-LINGUERE.xlsx") %>% 
   dplyr::distinct()
@@ -61,6 +61,8 @@ df <- df %>%
   dplyr::mutate(possession = ifelse(animaux>0,"Oui","Non"))
 
 ```
+
+
 ```{python animaux}
 data=r.df
 ax=data["possession"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
