@@ -4,6 +4,7 @@ RNU data wrangling
 ``` r
 library(readxl)
 library(dplyr)
+library(ggplot2)
 library(reticulate) #for python
 ```
 
@@ -47,26 +48,25 @@ df <- df %>%
 ```
 
 ``` r
-df %>% 
+ggplot(data=df %>% 
   dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,possession) %>% 
   dplyr::mutate(n=n()) %>% 
   dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,n) %>%
-  dplyr::distinct()  
+  dplyr::distinct(),aes(x = nom_commune_men, y = n)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=n), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Effectif", title = "Possession (Oui / Non) des animaux dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(possession), scales = "fixed")+
+ ylim(0L, 1000L)
 ```
 
-    ## # A tibble: 8 x 5
-    ## # Groups:   nom_region_men, nom_departement_men, nom_commune_men, possession
-    ## #   [8]
-    ##   nom_region_men nom_departement_men nom_commune_men possession     n
-    ##   <chr>          <chr>               <chr>           <chr>      <int>
-    ## 1 LOUGA          LINGUERE            THIEL           Oui          134
-    ## 2 LOUGA          LINGUERE            THIEL           Non          262
-    ## 3 LOUGA          LINGUERE            TESSEKRE FORAGE Non           92
-    ## 4 LOUGA          LINGUERE            TESSEKRE FORAGE Oui          103
-    ## 5 SAINT-LOUIS    DAGANA              MBANE           Non          392
-    ## 6 SAINT-LOUIS    DAGANA              MBANE           Oui          911
-    ## 7 MATAM          RANEROU             VELINGARA       Oui          493
-    ## 8 MATAM          RANEROU             VELINGARA       Non          358
+![](RNU-data-wrangling_files/figure-markdown_github/possession-1.png)
+
+``` r
+#esquisser(rs)
+```
 
 ``` python
 data=r.df
