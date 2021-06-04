@@ -80,6 +80,8 @@ Echantillon_Population_Pastorale<-Echantillon_Population_Pastorale %>%
   ) %>% 
   dplyr::mutate(n=round(n,0)) %>% 
   dplyr::filter(n>0)
+
+# write.csv2(Echantillon_Population_Pastorale,"EchantillonVillage.csv",row.names = F)
 ```
 
 ``` r
@@ -114,3 +116,36 @@ plt.show()
 ```
 
 <img src="sampling_files/figure-markdown_github/villageechantillon-1.png" width="768" />
+
+``` r
+ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887") +
+  geom_text(aes(label=MENAGES), position=position_dodge(width=0.9), hjust=-0.25)+
+ labs(x = "Commune", y = "Nombre de ménages", title = "Nombre de ménages à tirer par commune") +
+ coord_flip() +
+ ggthemes::theme_igray()
+```
+
+![](sampling_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+``` r
+ggplot(Echantillon_Population_Pastorale) +
+ aes(x = `2@DEPARTEMENT`, weight = n) +
+ geom_bar(position = "dodge", fill = "#0d0887") +
+ labs(x = "Département", y = "Nombre de ménages", title = "Nombre de ménages à tirer par département") +
+ coord_flip() +
+ ggthemes::theme_par()
+```
+
+![](sampling_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+``` r
+ggplot(Echantillon_Population_Pastorale) +
+ aes(x = `1@REGION`, weight = n) +
+ geom_bar(position = "dodge", fill = "#0d0887") +
+ labs(x = "Région", y = "Nombre de ménages", title = "Nombre de ménages à tirer par région") +
+ coord_flip() +
+ ggthemes::theme_stata()
+```
+
+![](sampling_files/figure-markdown_github/unnamed-chunk-11-1.png)
