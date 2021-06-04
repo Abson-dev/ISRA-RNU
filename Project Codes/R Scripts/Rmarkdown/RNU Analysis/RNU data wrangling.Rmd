@@ -62,6 +62,14 @@ df <- df %>%
 
 ```
 
+```{r}
+df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,possession) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,n) %>%
+  dplyr::distinct()  
+```
+
 
 ```{python animaux}
 data=r.df
