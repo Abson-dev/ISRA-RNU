@@ -71,7 +71,7 @@ ggplot(data=df %>%
   dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,prop) %>%
   dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
  geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
-  geom_text(aes(label=paste(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
  labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des animaux dans le RNU") +
  coord_flip() +
  ggthemes::theme_igray() +
@@ -93,6 +93,23 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
+```{r possessionbovins}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_1) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_1,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des bovins dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_1), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
+
 ```{python bovins}
 data=r.df
 ax=data["m14_1"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
@@ -103,6 +120,23 @@ fig = ax.figure
 fig.set_size_inches(8, 8)
 plt.show()
 ```
+
+```{r possessioncaprins}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_2) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_2,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des caprins dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_2), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
 
 ```{python caprins}
 data=r.df
@@ -115,6 +149,23 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
+```{r possessionovins}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_3) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_3,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des ovins dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_3), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
+
 ```{python ovins}
 data=r.df
 ax=data["m14_3"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
@@ -125,6 +176,23 @@ fig = ax.figure
 fig.set_size_inches(8, 8)
 plt.show()
 ```
+
+```{r possessionvolailles}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_4) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_4,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des volailles dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_4), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
 
 
 ```{python volailles}
@@ -138,6 +206,23 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
+```{r possessionporcins}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_5) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_5,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des porcins dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_5), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
+
 ```{python porcins}
 data=r.df
 ax=data["m14_5"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
@@ -149,6 +234,23 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
+```{r possessionchevaux}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_6) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_6,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des chevaux/juments dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_6), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
+
 ```{python chevaux}
 data=r.df
 ax=data["m14_6"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
@@ -159,6 +261,23 @@ fig = ax.figure
 fig.set_size_inches(8, 8)
 plt.show()
 ```
+
+```{r possessionanes}
+ggplot(data=df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,m14_7) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,m14_7,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des ânes dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(m14_7), scales = "fixed")+
+ ylim(0L, 40L)
+```
+
 
 ```{python anes}
 data=r.df
