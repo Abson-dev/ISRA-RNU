@@ -26,7 +26,7 @@ RNU_RANEROU <- read_excel("C:/Users/DELLDRAMOMO/Desktop/ISRA-RNU/Project dataset
 possession <- function(x) (ifelse(x==0,"Non","Oui"))
 df_RNU_DAGANA_LINGUERE <-RNU_DAGANA_LINGUERE %>% 
   dplyr::filter(nom_commune_men %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL")) %>% 
-  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,milieu_de_residence,dplyr::starts_with("m14")) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,milieu_de_residence,m13,dplyr::starts_with("m14")) %>% 
   dplyr::mutate_at(vars(dplyr::starts_with("m14_")),as.factor) %>% 
   dplyr::mutate_at(vars(dplyr::starts_with("m14_")),possession) %>% 
   dplyr::mutate(animaux=purrr::pmap(list(m14a,m14b,m14c,m14d,m14e,m14f,m14g,m14h),sum,na.rm=T))
@@ -34,8 +34,8 @@ df_RNU_DAGANA_LINGUERE <-RNU_DAGANA_LINGUERE %>%
 possession <- function(x) (ifelse(x==1,"Non","Oui"))
 df_RNU_RANEROU<-RNU_RANEROU %>% 
   dplyr::filter(nom_commune_men %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL")) %>% 
-  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,milieu_de_residence,dplyr::starts_with("m14")) %>% 
-  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,milieu_de_residence,dplyr::starts_with("m14")) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,milieu_de_residence,m13,dplyr::starts_with("m14")) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,milieu_de_residence,m13,dplyr::starts_with("m14")) %>% 
   dplyr::mutate_at(vars(dplyr::starts_with("m14_")),as.factor) %>% 
   dplyr::mutate_at(vars(dplyr::starts_with("m14_")),possession) %>% 
   dplyr::mutate(animaux=purrr::pmap(list(m14a,m14b,m14c,m14d,m14e,m14f,m14g,m14h),sum,na.rm=T))
@@ -149,3 +149,59 @@ plt.show()
 ```
 
 <img src="RNU-data-wrangling_files/figure-markdown_github/anes-1.png" width="768" />
+
+``` r
+df <- df %>% 
+  dplyr::mutate(m13=case_when(
+    m13==1 ~ "Salaires",
+    m13==2 ~ "Pension de retraite",
+    m13==3 ~ "Revenus de l'agriculture",
+    m13==4 ~ "Revenu de l'élevage",
+    m13==5 ~ "Revenu de la pêche",
+    m13==6 ~ "Revenus des activités non agricoles",
+    m13==7 ~ "Revenus locatives",
+    m13==8 ~ "Transferts",
+    m13==9 ~ "Autre"
+  ))
+```
+
+``` python
+data=r.df
+ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Activités principales des ménages')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+fig = ax.figure 
+fig.set_size_inches(8, 8)
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/revenus-1.png" width="768" />
+
+``` r
+df <- df %>% 
+  dplyr::mutate(m13=case_when(
+    m13=="Salaires" ~ "Autre",
+    m13=="Revenus de l'agriculture" ~ "Revenus de l'agriculture",
+    m13=="Revenu de l'élevage" ~ "Revenu de l'élevage",
+    m13=="Pension de retraite" ~ "Autre",
+    m13=="Revenu de la pêche" ~ "Autre",
+    m13=="Revenus des activités non agricoles" ~ "Revenus des activités non agricoles",
+    m13=="Revenus locatives" ~ "Autre",
+    m13=="Transferts" ~ "Autre",
+    m13=="Autre" ~ "Autre"
+  ))
+```
+
+``` python
+data=r.df
+ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Activités principales des ménages')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+fig = ax.figure 
+fig.set_size_inches(8, 8)
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/activites-1.png" width="768" />
