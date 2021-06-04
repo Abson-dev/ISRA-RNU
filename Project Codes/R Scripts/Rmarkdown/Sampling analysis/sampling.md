@@ -129,10 +129,13 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
 ![](sampling_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
-ggplot(Echantillon_Population_Pastorale) +
- aes(x = `2@DEPARTEMENT`, weight = n) +
- geom_bar(position = "dodge", fill = "#0d0887") +
- labs(x = "Département", y = "Nombre de ménages", title = "Nombre de ménages à tirer par département") +
+  ggplot(data=df_sta %>% 
+  dplyr::group_by(`2@DEPARTEMENT`) %>% 
+  dplyr::mutate(MENAGES=sum(MENAGES)) %>% 
+  dplyr::select(`2@DEPARTEMENT`,MENAGES) %>% 
+  dplyr::distinct(),aes(x = `2@DEPARTEMENT`, y = MENAGES)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887") +
+  geom_text(aes(label=MENAGES), position=position_dodge(width=0.9), hjust=-0.25)+labs(x = "Département", y = "Nombre de ménages", title = "Nombre de ménages à tirer par département") +
  coord_flip() +
  ggthemes::theme_par()
 ```
@@ -140,9 +143,13 @@ ggplot(Echantillon_Population_Pastorale) +
 ![](sampling_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 ``` r
-ggplot(Echantillon_Population_Pastorale) +
- aes(x = `1@REGION`, weight = n) +
- geom_bar(position = "dodge", fill = "#0d0887") +
+ggplot(data=df_sta %>% 
+  dplyr::group_by(`1@REGION`) %>% 
+  dplyr::mutate(MENAGES=sum(MENAGES)) %>% 
+  dplyr::select(`1@REGION`,MENAGES) %>% 
+  dplyr::distinct(),aes(x = `1@REGION`, y = MENAGES)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887") +
+  geom_text(aes(label=MENAGES), position=position_dodge(width=0.9), hjust=-0.25) +
  labs(x = "Région", y = "Nombre de ménages", title = "Nombre de ménages à tirer par région") +
  coord_flip() +
  ggthemes::theme_stata()
