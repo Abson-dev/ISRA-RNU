@@ -60,7 +60,10 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
-<img src="sampling_files/figure-markdown_github/echantillon-1.png" width="768" />
+<p align="center">
+  <img src="sampling_files/figure-markdown_github/echantillon-1.png" width="500" />
+</p>
+
 
 ``` r
 Echantillon_Population_Pastorale<-Population_Pastorale %>% 
@@ -115,7 +118,10 @@ fig.set_size_inches(8, 8)
 plt.show()
 ```
 
-<img src="sampling_files/figure-markdown_github/village-1.png" width="768" />
+<p align="center">
+  <img src="sampling_files/figure-markdown_github/village-1.png" width="500" />
+</p>
+
 
 ``` r
 ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
