@@ -138,10 +138,7 @@ plt.show()
 ```
 
 ```{r}
-library(esquisse)
-esquisser(Echantillon_Population_Pastorale)
 
-library(ggplot2)
 
 ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
  geom_bar(stat="identity",position = "dodge", fill = "#0d0887") +
