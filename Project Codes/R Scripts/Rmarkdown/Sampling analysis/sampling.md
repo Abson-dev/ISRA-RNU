@@ -137,7 +137,8 @@ ggplot(data=df_sta,aes(x = `3@COMMUNE`, y = MENAGES)) +
  geom_bar(stat="identity",position = "dodge", fill = "#0d0887") +
   geom_text(aes(label=MENAGES), position=position_dodge(width=0.9), hjust=-0.25)+labs(x = "Département", y = "Nombre de ménages", title = "Nombre de ménages à tirer par département") +
  coord_flip() +
- ggthemes::theme_par()
+ ggthemes::theme_par()+
+ ylim(0L, 200L)
 ```
 
 ![](sampling_files/figure-markdown_github/departement-1.png)
