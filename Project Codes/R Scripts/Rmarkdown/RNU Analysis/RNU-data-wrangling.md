@@ -46,6 +46,28 @@ df <- df %>%
   dplyr::mutate(possession = ifelse(animaux>0,"Oui","Non"))
 ```
 
+``` r
+df %>% 
+  dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,possession) %>% 
+  dplyr::mutate(n=n()) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,n) %>%
+  dplyr::distinct()  
+```
+
+    ## # A tibble: 8 x 5
+    ## # Groups:   nom_region_men, nom_departement_men, nom_commune_men, possession
+    ## #   [8]
+    ##   nom_region_men nom_departement_men nom_commune_men possession     n
+    ##   <chr>          <chr>               <chr>           <chr>      <int>
+    ## 1 LOUGA          LINGUERE            THIEL           Oui          134
+    ## 2 LOUGA          LINGUERE            THIEL           Non          262
+    ## 3 LOUGA          LINGUERE            TESSEKRE FORAGE Non           92
+    ## 4 LOUGA          LINGUERE            TESSEKRE FORAGE Oui          103
+    ## 5 SAINT-LOUIS    DAGANA              MBANE           Non          392
+    ## 6 SAINT-LOUIS    DAGANA              MBANE           Oui          911
+    ## 7 MATAM          RANEROU             VELINGARA       Oui          493
+    ## 8 MATAM          RANEROU             VELINGARA       Non          358
+
 ``` python
 data=r.df
 ax=data["possession"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
