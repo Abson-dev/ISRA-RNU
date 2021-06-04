@@ -51,15 +51,16 @@ df <- df %>%
 ggplot(data=df %>% 
   dplyr::group_by(nom_region_men,nom_departement_men,nom_commune_men,possession) %>% 
   dplyr::mutate(n=n()) %>% 
-  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,n) %>%
-  dplyr::distinct(),aes(x = nom_commune_men, y = n)) +
+  dplyr::mutate(prop=round(n * 100/2745,2)) %>% 
+  dplyr::select(nom_region_men,nom_departement_men,nom_commune_men,possession,prop) %>%
+  dplyr::distinct(),aes(x = nom_commune_men, y = prop)) +
  geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
-  geom_text(aes(label=n), position=position_dodge(width=0.9), hjust=-0.25) +
- labs(x = "Commune", y = "Effectif", title = "Possession (Oui / Non) des animaux dans le RNU") +
+  geom_text(aes(label=paste(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Commune", y = "Pourcentage", title = "Possession (Oui / Non) des animaux dans le RNU") +
  coord_flip() +
  ggthemes::theme_igray() +
  facet_wrap(vars(possession), scales = "fixed")+
- ylim(0L, 1000L)
+ ylim(0L, 35L)
 ```
 
 ![](RNU-data-wrangling_files/figure-markdown_github/possession-1.png)
