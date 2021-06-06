@@ -37,24 +37,6 @@ RNU_RANEROU <- read_excel("C:/Users/DELLDRAMOMO/Desktop/ISRA-RNU/Project dataset
   dplyr::distinct()
 ```
 
-    ## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
-    ## Expecting logical in IO1480 / R1480C249: got 'FAFD'
-
-    ## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
-    ## Expecting logical in HE1640 / R1640C213: got 'PROBLEME DE FAMILLE'
-
-    ## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
-    ## Expecting logical in IO1731 / R1731C249: got 'CECI'
-
-    ## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
-    ## Expecting logical in IO1769 / R1769C249: got 'MISSA'
-
-    ## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
-    ## Expecting logical in IO2035 / R2035C249: got 'MISSA'
-
-    ## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
-    ## Expecting logical in N2088 / R2088C14: got 'BASSE'
-
 Les deux bases n’ont pas les mêmes nombre de variables, nous avons
 décidé de prendre les variables communes après vérifications.
 
@@ -62,14 +44,7 @@ décidé de prendre les variables communes après vérifications.
 var<-intersect(names(RNU_DAGANA_LINGUERE),names(RNU_RANEROU))
 df1 <- RNU_DAGANA_LINGUERE %>% 
   dplyr::select(var)
-```
 
-    ## Note: Using an external vector in selections is ambiguous.
-    ## i Use `all_of(var)` instead of `var` to silence this message.
-    ## i See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.
-    ## This message is displayed once per session.
-
-``` r
 df2 <- RNU_RANEROU %>% 
   dplyr::select(var)
 
@@ -335,8 +310,154 @@ plt.show()
 Votre ménage possède-t-il les biens et équipements suivants ? (m11a à m11o)
 ---------------------------------------------------------------------------
 
+``` r
+df <- df   %>% 
+  dplyr::mutate_at(vars(dplyr::starts_with("m11")),as.numeric) %>% 
+  dplyr::mutate(biens=purrr::pmap(list(m11a,m11b,m11c,m11d,m11e,m11f,m11g,m11h,m11i,m11j,m11k,m11l,m11m,m11n,m11o),sum,na.rm=T))
+
+possession <- function(x) (ifelse(x==2,"Non","Oui"))
+df <- df %>% 
+  dplyr::mutate_at(vars(dplyr::starts_with("m11")),possession)
+
+possession <- function(x) (ifelse(x==30,"Aucun","Au moins un bien et équipement"))
+
+df <- df %>% 
+  dplyr::mutate_at(vars(biens),possession)
+```
+
+``` python
+data=r.df
+ax=data["biens"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Votre ménage possède-t-il au moins un des biens et équipements suivants ?')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/m11-1.png" width="960" />
+
+``` r
+biens <- df   %>% 
+  dplyr::select(dplyr::starts_with("m11"))
+df_bien<-as.data.frame(table(biens[,1]))
+df_bien$biens<-1
+for(n in 2:ncol(biens)) {
+   df1<-as.data.frame(table(biens[,n]))
+   df1$biens<-n
+   df_bien<-rbind(df_bien,df1)
+}
+
+df_bien <-df_bien %>% dplyr::mutate(biens=case_when(
+  biens == 1 ~ "Ordinateur fixe/portable",
+biens == 2 ~ "Internet",
+biens == 3 ~ "Ventilateur",
+biens == 4 ~ "Climatiseur",
+biens == 5 ~ "Télévision",
+biens == 6 ~ "Vidéo/VCD/DVD",
+biens == 7 ~ "Radio/Radiocassette",
+biens == 8 ~ "Téléphone fixe",
+biens == 9 ~ "Téléphone portable",
+biens == 10 ~ "Cuisinière moderne",
+biens == 11 ~ "Foyer amélioré",
+biens == 12 ~ "Réfrigérateur/Congélateur",
+biens == 13 ~ "Bicyclette",
+biens == 14 ~ "Motocyclette",
+biens == 15 ~ "Voiture"
+
+)) %>% 
+  mutate(prop=round(Freq * 100/18512,2))
+```
+
+``` r
+ggplot(data=df_bien,aes(x = biens, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Biens et équipements", y = "Pourcentage", title = "Possession (Oui / Non) des biens et équipements dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(Var1), scales = "fixed")+
+ ylim(0L, 150L)
+```
+
+![](RNU-data-wrangling_files/figure-markdown_github/biens-1.png)
+
 Votre ménage possède-t-il les moyens de production suivants ? (m12a à m12s)
 ---------------------------------------------------------------------------
+
+``` r
+df <- df   %>% 
+  dplyr::mutate_at(vars(dplyr::starts_with("m12")),as.numeric) %>% 
+  dplyr::mutate(moyensproduct=purrr::pmap(list(m12a,m12b,m12c,m12d,m12e,m12f,m12g,m12h,m12i,m12j,m12k,m12l,m12m,m12n,m12o,m12p,m12q,m12r,m12s),sum,na.rm=T))
+
+possession <- function(x) (ifelse(x==38,"Aucun","Au moins un moyen de production"))
+
+df <- df %>% 
+  dplyr::mutate_at(vars(moyensproduct),possession)
+```
+
+``` python
+data=r.df
+ax=data["moyensproduct"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Votre ménage possède-t-il au moins un des moyens de production suivants?')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/m12-1.png" width="960" />
+
+``` r
+possession <- function(x) (ifelse(x==2,"Non","Oui"))
+
+df <- df %>% 
+  dplyr::mutate_at(vars(dplyr::starts_with("m12")),possession)
+moyens <- df   %>% 
+  dplyr::select(dplyr::starts_with("m12"))
+df_bien<-as.data.frame(table(moyens[,1]))
+df_bien$moyens<-1
+for(n in 2:ncol(moyens)) {
+   df1<-as.data.frame(table(moyens[,n]))
+   df1$moyens<-n
+   df_bien<-rbind(df_bien,df1)
+}
+
+df_bien <-df_bien %>% dplyr::mutate(moyens=case_when(
+  moyens == 1 ~ "Houe/Charrue/Semoir",
+moyens == 2 ~ "Calèche/Charrette",
+moyens == 3 ~ "Animaux de trait",
+moyens == 4 ~ "Tracteur",
+moyens == 5 ~ "Voiture/camion",
+moyens == 6 ~ "Mobylette/motocyclette",
+moyens == 7 ~ "Pirogue",
+moyens == 8 ~ "Réfrig/congélat",
+moyens == 9 ~ "Machine à coudre",
+moyens == 10 ~ "Matériel de musique",
+moyens == 11 ~ "Chaises/Bâches",
+moyens == 12 ~ "Téléphone/Fax",
+moyens == 13 ~ "Photocopieuse",
+moyens == 14 ~ "Ordinateur/wifi",
+moyens == 15 ~ "Moulin/décortiqueuse",
+moyens == 16 ~ "Appareil photo/caméra",
+moyens == 17 ~ "Motopompe",
+moyens == 18 ~ "Presse à huile",
+moyens == 19 ~ "Groupe électrogène"
+
+)) %>% 
+  mutate(prop=round(Freq * 100/18512,2)) 
+```
+
+``` r
+ggplot(data=df_bien,aes(x = moyens, y = prop)) +
+ geom_bar(stat="identity",position = "dodge", fill = "#0d0887")  +
+  geom_text(aes(label=paste0(prop,"%")), position=position_dodge(width=0.9), hjust=-0.25) +
+ labs(x = "Biens et équipements", y = "Pourcentage", title = "Possession (Oui / Non) des biens et équipements dans le RNU") +
+ coord_flip() +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(Var1), scales = "fixed")+
+ ylim(0L, 150L)
+```
+
+![](RNU-data-wrangling_files/figure-markdown_github/moyens-1.png)
 
 Quelle est la principale source de revenu de votre ménage ? (m13)
 -----------------------------------------------------------------
