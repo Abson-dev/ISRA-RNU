@@ -514,6 +514,49 @@ plt.show()
 
 <img src="RNU-data-wrangling_files/figure-markdown_github/m14-1.png" width="960" />
 
+Intermédiaire
+-------------
+
+``` r
+elevage<- df %>% 
+  dplyr::filter(m13=="Revenu de l'élevage")
+df_elevage<-elevage %>% 
+  dplyr::select(m13,animaux)
+df_elevage$animaux<-as.numeric(df_elevage$animaux)
+mean(df_elevage$animaux)
+```
+
+    ## [1] 17.79952
+
+``` r
+min(df_elevage$animaux)
+```
+
+    ## [1] 0
+
+``` r
+max(df_elevage$animaux)
+```
+
+    ## [1] 2005
+
+``` r
+classe <- function(x) (ifelse(x<10,"[0-10[",ifelse(x>=10 & x<20,"[10-20[",ifelse(x>=20 & x<30,"[20-30[","[30 +["))))
+df_elevage <- df_elevage %>% 
+  dplyr::mutate_at(vars(animaux),classe)
+```
+
+``` python
+data=r.df_elevage
+ax=data["animaux"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Possession des animaux par les éleveurs')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/elevage-1.png" width="960" />
+
 Quelle est la superficie totale (en hectare) cultivée et/ou plantée par votre ménage lors de la campagne passée ? (m15a à m15g )
 --------------------------------------------------------------------------------------------------------------------------------
 
