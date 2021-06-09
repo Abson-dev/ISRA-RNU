@@ -517,7 +517,8 @@ plt.show()
 
 ```{r}
 elevage<- df %>% 
-  dplyr::filter(m13=="Revenu de l'élevage")
+  dplyr::filter(m13=="Revenu de l'élevage") df_5<- df %>% 
+  dplyr::filter(nom_commune_men %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL"))
 df_elevage<-elevage %>% 
   dplyr::select(m13,animaux)
 df_elevage$animaux<-as.numeric(df_elevage$animaux)
