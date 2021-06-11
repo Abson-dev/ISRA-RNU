@@ -64,6 +64,8 @@ df2 <- RNU_RANEROU %>%
   dplyr::select(var)
 
 df <- rbind(df1,df2)
+
+write.csv2(df,"RNU.csv",row.names = F)
 ```
 
 ## Quel est le type de votre logement ? (m1)
