@@ -49,6 +49,8 @@ df2 <- RNU_RANEROU %>%
   dplyr::select(var)
 
 df <- rbind(df1,df2)
+
+write.csv2(df,"RNU.csv",row.names = F)
 ```
 
 Quel est le type de votre logement ? (m1)
@@ -519,31 +521,22 @@ Intermédiaire
 
 ``` r
 elevage<- df %>% 
-  dplyr::filter(m13=="Revenu de l'élevage")
-df_elevage<-elevage %>% 
-  dplyr::select(m13,animaux)
+  dplyr::filter(m13=="Revenu de l'élevage") 
+#1247
+df_elevage<- elevage %>% 
+  dplyr::filter(nom_commune_men %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL"))
+#354
+df_elevage<-df_elevage %>% 
+  dplyr::select(m13,animaux,m14_bis)
 df_elevage$animaux<-as.numeric(df_elevage$animaux)
-mean(df_elevage$animaux)
-```
-
-    ## [1] 17.79952
-
-``` r
-min(df_elevage$animaux)
-```
-
-    ## [1] 0
-
-``` r
-max(df_elevage$animaux)
-```
-
-    ## [1] 2005
-
-``` r
+# mean(df_elevage$animaux)
+# min(df_elevage$animaux)
+# max(df_elevage$animaux)
 classe <- function(x) (ifelse(x<10,"[0-10[",ifelse(x>=10 & x<20,"[10-20[",ifelse(x>=20 & x<30,"[20-30[","[30 +["))))
 df_elevage <- df_elevage %>% 
   dplyr::mutate_at(vars(animaux),classe)
+
+#1247
 ```
 
 ``` python
@@ -556,6 +549,17 @@ plt.show()
 ```
 
 <img src="RNU-data-wrangling_files/figure-markdown_github/elevage-1.png" width="960" />
+
+``` python
+data=r.df_elevage
+ax=data["m14_bis"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Possession d''animaux')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/possanimaux-1.png" width="960" />
 
 Quelle est la superficie totale (en hectare) cultivée et/ou plantée par votre ménage lors de la campagne passée ? (m15a à m15g )
 --------------------------------------------------------------------------------------------------------------------------------
