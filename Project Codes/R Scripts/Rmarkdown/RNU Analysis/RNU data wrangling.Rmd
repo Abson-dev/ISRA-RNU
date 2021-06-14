@@ -519,14 +519,17 @@ plt.show()
 
 ```{r}
 elevage<- df %>% 
-  dplyr::filter(m13=="Revenu de l'élevage") df_5<- df %>% 
+  dplyr::filter(m13=="Revenu de l'élevage") 
+#1247
+df_elevage<- elevage %>% 
   dplyr::filter(nom_commune_men %in% c("VELINGARA","TESSEKRE FORAGE","MBANE","THIEL"))
-df_elevage<-elevage %>% 
-  dplyr::select(m13,animaux)
+#354
+df_elevage<-df_elevage %>% 
+  dplyr::select(m13,animaux,m14_bis)
 df_elevage$animaux<-as.numeric(df_elevage$animaux)
-mean(df_elevage$animaux)
-min(df_elevage$animaux)
-max(df_elevage$animaux)
+# mean(df_elevage$animaux)
+# min(df_elevage$animaux)
+# max(df_elevage$animaux)
 classe <- function(x) (ifelse(x<10,"[0-10[",ifelse(x>=10 & x<20,"[10-20[",ifelse(x>=20 & x<30,"[20-30[","[30 +["))))
 df_elevage <- df_elevage %>% 
   dplyr::mutate_at(vars(animaux),classe)
@@ -538,6 +541,16 @@ df_elevage <- df_elevage %>%
 data=r.df_elevage
 ax=data["animaux"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
 ax.set_title('Possession des animaux par les éleveurs')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+plt.show()
+```
+
+
+```{python possanimaux}
+data=r.df_elevage
+ax=data["m14_bis"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
+ax.set_title('Possession d''animaux')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 plt.show()
