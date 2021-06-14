@@ -912,7 +912,7 @@ plt.show()
 <img src="RNU-data-wrangling_files/figure-markdown_github/revenus-1.png" width="768" />
 
 ``` r
-df <- df %>% 
+df_recode <- df %>% 
   dplyr::mutate(m13=case_when(
     m13=="Salaires" ~ "Autre",
     m13=="Revenus de l'agriculture" ~ "Revenus de l'agriculture",
@@ -927,9 +927,9 @@ df <- df %>%
 ```
 
 ``` python
-data=r.df
+data=r.df_recode
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
-ax.set_title('Activités principales des ménages')
+ax.set_title('Proportion des ménages suivant les principales sources de révenus')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 fig = ax.figure 
@@ -938,3 +938,79 @@ plt.show()
 ```
 
 <img src="RNU-data-wrangling_files/figure-markdown_github/activites-1.png" width="768" />
+
+``` r
+v<-df_recode %>% 
+  dplyr::filter(nom_commune_men %in% c("VELINGARA"))
+#,"TESSEKRE FORAGE","MBANE","THIEL"
+```
+
+``` python
+data=r.v
+ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
+ax.set_title('Proportion des ménages commune de Vélingara  avec principales sources de revenu')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+# fig = ax.figure 
+# fig.set_size_inches(8, 8)
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/v-1.png" width="768" />
+
+``` r
+TESSEKRE<-df_recode %>% 
+  dplyr::filter(nom_commune_men %in% c("TESSEKRE FORAGE"))
+#,"TESSEKRE FORAGE","MBANE","THIEL"
+```
+
+``` python
+data=r.TESSEKRE
+ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
+ax.set_title('Proportion des ménages commune de Téssékré forage  avec principales sources de revenu')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+# fig = ax.figure 
+# fig.set_size_inches(8, 8)
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/t-1.png" width="768" />
+
+``` r
+MBANE<-df_recode %>% 
+  dplyr::filter(nom_commune_men %in% c("MBANE"))
+#,"TESSEKRE FORAGE","MBANE","THIEL"
+```
+
+``` python
+data=r.MBANE
+ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
+ax.set_title('Proportion des ménages commune de Mbane  avec principales sources de revenu')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+# fig = ax.figure 
+# fig.set_size_inches(8, 8)
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/m-1.png" width="768" />
+
+``` r
+THIEL<-df_recode %>% 
+  dplyr::filter(nom_commune_men %in% c("THIEL"))
+#,"TESSEKRE FORAGE","MBANE","THIEL"
+```
+
+``` python
+data=r.THIEL
+ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
+ax.set_title('Proportion des ménages commune de Thiel  avec principales sources de revenu')
+ax.set_aspect(1) # make it round 
+ax.set_ylabel('') # remove default 
+# fig = ax.figure 
+# fig.set_size_inches(8, 8)
+plt.show()
+```
+
+<img src="RNU-data-wrangling_files/figure-markdown_github/th-1.png" width="768" />
