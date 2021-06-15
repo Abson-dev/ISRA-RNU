@@ -521,7 +521,7 @@ Intermédiaire
 
 ``` r
 df_inter<-df %>% 
-  dplyr::select(m13,animaux,m14_bis)
+  dplyr::select(m13,animaux)
 df_inter$animaux<-as.numeric(df_inter$animaux)
 # mean(df_elevage$animaux)
 # min(df_elevage$animaux)
@@ -529,7 +529,20 @@ df_inter$animaux<-as.numeric(df_inter$animaux)
 classe <- function(x) (ifelse(x<10,"[0-10[",ifelse(x>=10 & x<20,"[10-20[",ifelse(x>=20 & x<30,"[20-30[","[30 +["))))
 df_inter <- df_inter %>% 
   dplyr::mutate_at(vars(animaux),classe)
+table(df_inter$m13,df_inter$animaux)
 ```
+
+    ##                                      
+    ##                                       [0-10[ [10-20[ [20-30[ [30 +[
+    ##   Autre                                  123       1       0      0
+    ##   Pension de retraite                    433       8       4     24
+    ##   Revenu de l'élevage                    586     364     125    172
+    ##   Revenu de la pêche                     209       6       2      3
+    ##   Revenus de l'agriculture              2895     302     102    107
+    ##   Revenus des activités non agricoles  10203     801     250    255
+    ##   Revenus locatives                      123      14       4      0
+    ##   Salaires                              1038      11       1      3
+    ##   Transferts                             332      10       1      0
 
 ``` python
 data=r.df_inter
@@ -952,7 +965,7 @@ df_recode <- df %>%
 ``` python
 data=r.df_recode
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
-ax.set_title('Proportion des ménages suivant les principales sources de révenus')
+# ax.set_title('Proportion des ménages suivant les principales sources de révenus')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 fig = ax.figure 
@@ -971,7 +984,7 @@ v<-df_recode %>%
 ``` python
 data=r.v
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Vélingara  avec principales sources de revenu')
+ax.set_title('(a)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -979,7 +992,7 @@ ax.set_ylabel('') # remove default
 plt.show()
 ```
 
-<img src="RNU-data-wrangling_files/figure-markdown_github/v-1.png" width="768" />
+<img src="RNU-data-wrangling_files/figure-markdown_github/velingara-1.png" width="768" />
 
 ``` r
 TESSEKRE<-df_recode %>% 
@@ -990,7 +1003,7 @@ TESSEKRE<-df_recode %>%
 ``` python
 data=r.TESSEKRE
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Téssékré forage  avec principales sources de revenu')
+ax.set_title('(b)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -998,7 +1011,7 @@ ax.set_ylabel('') # remove default
 plt.show()
 ```
 
-<img src="RNU-data-wrangling_files/figure-markdown_github/t-1.png" width="768" />
+<img src="RNU-data-wrangling_files/figure-markdown_github/tessekre-1.png" width="768" />
 
 ``` r
 MBANE<-df_recode %>% 
@@ -1009,7 +1022,7 @@ MBANE<-df_recode %>%
 ``` python
 data=r.MBANE
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Mbane  avec principales sources de revenu')
+ax.set_title('(c)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -1017,7 +1030,7 @@ ax.set_ylabel('') # remove default
 plt.show()
 ```
 
-<img src="RNU-data-wrangling_files/figure-markdown_github/m-1.png" width="768" />
+<img src="RNU-data-wrangling_files/figure-markdown_github/mbane-1.png" width="768" />
 
 ``` r
 THIEL<-df_recode %>% 
@@ -1028,7 +1041,7 @@ THIEL<-df_recode %>%
 ``` python
 data=r.THIEL
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Thiel  avec principales sources de revenu')
+ax.set_title('(d)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -1036,4 +1049,4 @@ ax.set_ylabel('') # remove default
 plt.show()
 ```
 
-<img src="RNU-data-wrangling_files/figure-markdown_github/th-1.png" width="768" />
+<img src="RNU-data-wrangling_files/figure-markdown_github/thiel-1.png" width="768" />
