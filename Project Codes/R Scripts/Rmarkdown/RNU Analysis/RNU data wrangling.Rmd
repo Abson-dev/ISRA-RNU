@@ -519,7 +519,7 @@ plt.show()
 
 ```{r}
 df_inter<-df %>% 
-  dplyr::select(m13,animaux,m14_bis)
+  dplyr::select(m13,animaux)
 df_inter$animaux<-as.numeric(df_inter$animaux)
 # mean(df_elevage$animaux)
 # min(df_elevage$animaux)
@@ -527,6 +527,7 @@ df_inter$animaux<-as.numeric(df_inter$animaux)
 classe <- function(x) (ifelse(x<10,"[0-10[",ifelse(x>=10 & x<20,"[10-20[",ifelse(x>=20 & x<30,"[20-30[","[30 +["))))
 df_inter <- df_inter %>% 
   dplyr::mutate_at(vars(animaux),classe)
+table(df_inter$m13,df_inter$animaux)
 ```
 
 
@@ -915,7 +916,7 @@ df_recode <- df %>%
 ```{python activites}
 data=r.df_recode
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%', figsize=(10, 10))
-ax.set_title('Proportion des ménages suivant les principales sources de révenus')
+# ax.set_title('Proportion des ménages suivant les principales sources de révenus')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 fig = ax.figure 
@@ -929,10 +930,10 @@ v<-df_recode %>%
 #,"TESSEKRE FORAGE","MBANE","THIEL"
 ```
 
-```{python v}
+```{python velingara}
 data=r.v
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Vélingara  avec principales sources de revenu')
+ax.set_title('(a)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -948,10 +949,10 @@ TESSEKRE<-df_recode %>%
 #,"TESSEKRE FORAGE","MBANE","THIEL"
 ```
 
-```{python t}
+```{python tessekre}
 data=r.TESSEKRE
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Téssékré forage  avec principales sources de revenu')
+ax.set_title('(b)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -966,10 +967,10 @@ MBANE<-df_recode %>%
 #,"TESSEKRE FORAGE","MBANE","THIEL"
 ```
 
-```{python m}
+```{python mbane}
 data=r.MBANE
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Mbane  avec principales sources de revenu')
+ax.set_title('(c)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
@@ -985,14 +986,15 @@ THIEL<-df_recode %>%
 ```
 
 
-```{python th}
+```{python thiel}
 data=r.THIEL
 ax=data["m13"].value_counts().plot(kind = 'pie', autopct='%1.2f%%')
-ax.set_title('Proportion des ménages commune de Thiel  avec principales sources de revenu')
+ax.set_title('(d)')
 ax.set_aspect(1) # make it round 
 ax.set_ylabel('') # remove default 
 # fig = ax.figure 
 # fig.set_size_inches(8, 8)
 plt.show()
 ```
+
 
