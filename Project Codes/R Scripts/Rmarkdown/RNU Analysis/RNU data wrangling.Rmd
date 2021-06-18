@@ -997,4 +997,34 @@ ax.set_ylabel('') # remove default
 plt.show()
 ```
 
+```{r}
+df_gr<-rbind(v,THIEL,MBANE,TESSEKRE)
+
+library(esquisse)
+#esquisser(df_gr)
+
+
+library(ggplot2)
+
+ggplot(df_gr) +
+ aes(x = m13) +
+ geom_bar(fill = "#00441b") +
+ labs(x = "Principales sources de revenus", y = "Nombre") +
+ coord_flip() +
+ theme_bw() +
+ facet_wrap(vars(nom_commune_men))
+library(ggplot2)
+
+
+```
+
+```{r}
+ggplot(df_gr) +
+ aes(x = m13) +
+ geom_bar(fill = "#00441b") +
+ labs(x = "Principales sources de revenu", y = "Effectif") +
+ coord_flip() +
+ theme_minimal() +
+ facet_wrap(vars(nom_commune_men), scales = "free_y")
+```
 
