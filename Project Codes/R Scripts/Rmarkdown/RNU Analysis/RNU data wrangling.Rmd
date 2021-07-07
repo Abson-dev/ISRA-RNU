@@ -911,6 +911,7 @@ df_recode <- df %>%
     m13=="Transferts" ~ "Autre",
     m13=="Autre" ~ "Autre"
   ))
+write.csv2(df_recode,"RNU2.csv",row.names = F)
 ```
 
 ```{python activites}
@@ -927,7 +928,9 @@ plt.show()
 ```{r}
 v<-df_recode %>% 
   dplyr::filter(nom_commune_men %in% c("VELINGARA"))
+write.csv2(v,"VELINGARA.csv",row.names = F)
 #,"TESSEKRE FORAGE","MBANE","THIEL"
+table(v$m13)
 ```
 
 ```{python velingara}
@@ -947,6 +950,8 @@ plt.show()
 TESSEKRE<-df_recode %>% 
   dplyr::filter(nom_commune_men %in% c("TESSEKRE FORAGE"))
 #,"TESSEKRE FORAGE","MBANE","THIEL"
+write.csv2(TESSEKRE,"TESSEKRE.csv",row.names = F)
+table(TESSEKRE$m13)
 ```
 
 ```{python tessekre}
@@ -965,6 +970,8 @@ plt.show()
 MBANE<-df_recode %>% 
   dplyr::filter(nom_commune_men %in% c("MBANE"))
 #,"TESSEKRE FORAGE","MBANE","THIEL"
+write.csv2(MBANE,"MBANE.csv",row.names = F)
+table(MBANE$m13)
 ```
 
 ```{python mbane}
@@ -983,6 +990,8 @@ plt.show()
 THIEL<-df_recode %>% 
   dplyr::filter(nom_commune_men %in% c("THIEL"))
 #,"TESSEKRE FORAGE","MBANE","THIEL"
+write.csv2(THIEL,"THIEL.csv",row.names = F)
+table(THIEL$m13)
 ```
 
 
